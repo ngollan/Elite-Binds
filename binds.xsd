@@ -1,0 +1,609 @@
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="urn:EliteDangerousBinds.3.0.xsd"
+  xmlns="urn:EliteDangerousBinds.3.0.xsd"
+  elementFormDefault="qualified">
+
+  <xs:element name="Root" type="bindsContainer" />
+
+  <xs:complexType name="bindsContainer">
+    <xs:all><!-- double MouseGUI breaking even that... -->
+      <xs:element name="KeyboardLayout" />
+
+      <!-- restrict --><xs:element name="MouseXMode" type="string" />
+      <!-- restrict --><xs:element name="MouseXDecay" type="string" />
+      <!-- restrict --><xs:element name="MouseYMode" type="string" />
+      <xs:element name="MouseYDecay" type="positiveFloat" />
+      <xs:element name="MouseReset" type="button" />
+      <xs:element name="MouseSensitivity" type="positiveFloat" />
+      <xs:element name="MouseDecayRate" type="positiveFloat" />
+      <xs:element name="MouseDeadzone" type="zeroToOneFloat" />
+      <xs:element name="MouseLinearity" type="positiveFloat" />
+      <xs:element name="MouseGUI" type="numBool" />
+
+      <xs:element name="YawAxisRaw" type="axis" />
+      <xs:element name="YawLeftButton" type="button" />
+      <xs:element name="YawRightButton" type="button" />
+      <xs:element name="YawToRollMode" type="yawToRollMode" />
+      <xs:element name="YawToRollSensitivity" type="positiveFloat" />
+      <!-- ? --><xs:element name="YawToRollMode_FAOff" type="string" />
+      <xs:element name="YawToRollButton" type="toggleButton" />
+      <xs:element name="RollAxisRaw" type="axis" />
+      <xs:element name="RollLeftButton" type="button" />
+      <xs:element name="RollRightButton" type="button" />
+      <xs:element name="PitchAxisRaw" type="axis" />
+      <xs:element name="PitchUpButton" type="button" />
+      <xs:element name="PitchDownButton" type="button" />
+      <xs:element name="LateralThrustRaw" type="axis" />
+      <xs:element name="LeftThrustButton" type="button" />
+      <xs:element name="RightThrustButton" type="button" />
+      <xs:element name="VerticalThrustRaw" type="axis" />
+      <xs:element name="UpThrustButton" type="button" />
+      <xs:element name="DownThrustButton" type="button" />
+      <xs:element name="AheadThrust" type="axis" />
+      <xs:element name="ForwardThrustButton" type="button" />
+      <xs:element name="BackwardThrustButton" type="button" />
+      <xs:element name="UseAlternateFlightValuesToggle" type="toggleButton" />
+      <xs:element name="YawAxisAlternate" type="axis" />
+      <xs:element name="RollAxisAlternate" type="axis" />
+      <xs:element name="PitchAxisAlternate" type="axis" />
+      <xs:element name="LateralThrustAlternate" type="axis" />
+      <xs:element name="VerticalThrustAlternate" type="axis" />
+      <xs:element name="ThrottleAxis" type="axis" />
+      <xs:element name="ThrottleRange" type="throttleRange" />
+      <xs:element name="ToggleReverseThrottleInput" type="toggleButton" />
+      <xs:element name="ForwardKey" type="button" />
+      <xs:element name="BackwardKey" type="button" />
+      <xs:element name="ThrottleIncrement" type="zeroToOneFloat" />
+      <xs:element name="SetSpeedMinus100" type="button" />
+      <xs:element name="SetSpeedMinus75" type="button" />
+      <xs:element name="SetSpeedMinus50" type="button" />
+      <xs:element name="SetSpeedMinus25" type="button" />
+      <xs:element name="SetSpeedZero" type="button" />
+      <xs:element name="SetSpeed25" type="button" />
+      <xs:element name="SetSpeed50" type="button" />
+      <xs:element name="SetSpeed75" type="button" />
+      <xs:element name="SetSpeed100" type="button" />
+
+      <!-- Landing mode controls -->
+      <xs:element name="YawAxis_Landing" type="axis" />
+      <xs:element name="YawLeftButton_Landing" type="button" />
+      <xs:element name="YawRightButton_Landing" type="button" />
+      <xs:element name="YawToRollMode_Landing" type="yawToRollMode" />
+      <xs:element name="PitchAxis_Landing" type="axis" />
+      <xs:element name="PitchUpButton_Landing" type="button" />
+      <xs:element name="PitchDownButton_Landing" type="button" />
+      <xs:element name="RollAxis_Landing" type="axis" />
+      <xs:element name="RollLeftButton_Landing" type="button" />
+      <xs:element name="RollRightButton_Landing" type="button" />
+      <xs:element name="LateralThrust_Landing" type="axis" />
+      <xs:element name="LeftThrustButton_Landing" type="button" />
+      <xs:element name="RightThrustButton_Landing" type="button" />
+      <xs:element name="VerticalThrust_Landing" type="axis" />
+      <xs:element name="UpThrustButton_Landing" type="button" />
+      <xs:element name="DownThrustButton_Landing" type="button" />
+      <xs:element name="AheadThrust_Landing" type="axis" />
+      <xs:element name="ForwardThrustButton_Landing" type="button" />
+      <xs:element name="BackwardThrustButton_Landing" type="button" />
+
+      <xs:element name="ToggleFlightAssist" type="toggleButton" />
+      <xs:element name="UseBoostJuice" type="button" />
+      <xs:element name="HyperSuperCombination" type="button" />
+      <xs:element name="Supercruise" type="button" />
+      <xs:element name="Hyperspace" type="button" />
+      <xs:element name="DisableRotationCorrectToggle" type="toggleButton" />
+      <xs:element name="OrbitLinesToggle" type="button" />
+      <xs:element name="SelectTarget" type="button" />
+      <xs:element name="CycleNextTarget" type="button" />
+      <xs:element name="CyclePreviousTarget" type="button" />
+      <xs:element name="SelectHighestThreat" type="button" />
+      <xs:element name="CycleNextHostileTarget" type="button" />
+      <xs:element name="CyclePreviousHostileTarget" type="button" />
+      <xs:element name="TargetWingman0" type="button" />
+      <xs:element name="TargetWingman1" type="button" />
+      <xs:element name="TargetWingman2" type="button" />
+      <xs:element name="SelectTargetsTarget" type="button" />
+      <xs:element name="WingNavLock" type="button" />
+      <xs:element name="CycleNextSubsystem" type="button" />
+      <xs:element name="CyclePreviousSubsystem" type="button" />
+      <xs:element name="TargetNextRouteSystem" type="button" />
+      <xs:element name="PrimaryFire" type="button" />
+      <xs:element name="SecondaryFire" type="button" />
+      <xs:element name="CycleFireGroupNext" type="button" />
+      <xs:element name="CycleFireGroupPrevious" type="button" />
+      <xs:element name="DeployHardpointToggle" type="button" />
+      <xs:element name="DeployHardpointsOnFire" type="numBool" />
+      <xs:element name="ToggleButtonUpInput" type="toggleButton" />
+      <xs:element name="DeployHeatSink" type="button" />
+      <xs:element name="ShipSpotLightToggle" type="button" />
+      <xs:element name="RadarRangeAxis" type="axis" />
+      <xs:element name="RadarIncreaseRange" type="button" />
+      <xs:element name="RadarDecreaseRange" type="button" />
+      <xs:element name="IncreaseEnginesPower" type="button" />
+      <xs:element name="IncreaseWeaponsPower" type="button" />
+      <xs:element name="IncreaseSystemsPower" type="button" />
+      <xs:element name="ResetPowerDistribution" type="button" />
+      <xs:element name="HMDReset" type="button" />
+      <xs:element name="ToggleCargoScoop" type="toggleButton" />
+      <xs:element name="EjectAllCargo" type="button" />
+      <xs:element name="LandingGearToggle" type="button" />
+      <xs:element name="MicrophoneMute" type="toggleButton" />
+      <!-- restrict --><xs:element name="MuteButtonMode" type="string" />
+      <!-- restrict --><xs:element name="CqcMuteButtonMode" type="string" />
+      <xs:element name="UseShieldCell" type="button" />
+      <xs:element name="FireChaffLauncher" type="button" />
+      <xs:element name="ChargeECM" type="button" />
+      <xs:element name="EnableRumbleTrigger" type="numBool" />
+      <xs:element name="EnableMenuGroups" type="numBool" />
+      <xs:element name="WeaponColourToggle" type="button" />
+      <xs:element name="EngineColourToggle" type="button" />
+      <xs:element name="NightVisionToggle" type="button" />
+      <xs:element name="UIFocus" type="button" />
+      <xs:element name="UIFocusMode" type="uiFocusMode" />
+      <xs:element name="FocusLeftPanel" type="button" />
+      <xs:element name="FocusCommsPanel" type="button" />
+      <xs:element name="FocusOnTextEntryField" type="numBool" />
+      <xs:element name="QuickCommsPanel" type="button" />
+      <xs:element name="FocusRadarPanel" type="button" />
+      <xs:element name="FocusRightPanel" type="button" />
+
+      <!-- looking at panels -->
+      <!-- ? --><xs:element name="LeftPanelFocusOptions" type="string" />
+      <!-- ? --><xs:element name="CommsPanelFocusOptions" type="string" />
+      <!-- ? --><xs:element name="RolePanelFocusOptions" type="string" />
+      <!-- ? --><xs:element name="RightPanelFocusOptions" type="string" />
+
+      <xs:element name="EnableCameraLockOn" type="numBool" />
+      <xs:element name="GalaxyMapOpen" type="button" />
+      <xs:element name="SystemMapOpen" type="button" />
+      <xs:element name="ShowPGScoreSummaryInput" type="toggleButton" />
+      <xs:element name="HeadLookToggle" type="toggleButton" />
+      <!-- WTH? --><xs:element name="Pause" type="button" />
+      <xs:element name="FriendsMenu" type="button" />
+      <xs:element name="OpenCodexGoToDiscovery" type="button" />
+      <xs:element name="PlayerHUDModeToggle" type="button" />
+      <xs:element name="UI_Up" type="button" />
+      <xs:element name="UI_Down" type="button" />
+      <xs:element name="UI_Left" type="button" />
+      <xs:element name="UI_Right" type="button" />
+      <xs:element name="UI_Select" type="button" />
+      <xs:element name="UI_Back" type="button" />
+      <xs:element name="UI_Toggle" type="button" />
+      <xs:element name="CycleNextPanel" type="button" />
+      <xs:element name="CyclePreviousPanel" type="button" />
+      <xs:element name="CycleNextPage" type="button" />
+      <xs:element name="CyclePreviousPage" type="button" />
+
+      <xs:element name="MouseHeadlook" type="numBool" />
+      <xs:element name="MouseHeadlookInvert" type="numBool" />
+      <xs:element name="MouseHeadlookSensitivity" type="positiveFloat" />
+      <xs:element name="HeadlookDefault" type="numBool" />
+      <xs:element name="HeadlookIncrement" type="positiveFloat" />
+      <xs:element name="HeadlookMode" type="headlookMode" />
+      <xs:element name="HeadlookResetOnToggle" type="numBool" />
+      <xs:element name="HeadlookSensitivity" type="positiveFloat" />
+      <xs:element name="HeadlookSmoothing" type="numBool" />
+      <xs:element name="HeadLookReset" type="button" />
+      <xs:element name="HeadLookPitchUp" type="button" />
+      <xs:element name="HeadLookPitchDown" type="button" />
+      <xs:element name="HeadLookPitchAxisRaw" type="axis" />
+      <xs:element name="HeadLookYawLeft" type="button" />
+      <xs:element name="HeadLookYawRight" type="button" />
+      <xs:element name="HeadLookYawAxis" type="axis" />
+      <xs:element name="MotionHeadlook" type="numBool" />
+      <xs:element name="HeadlookMotionSensitivity" type="positiveFloat" />
+      <xs:element name="yawRotateHeadlook" type="numBool" />
+      <xs:element name="CamPitchAxis" type="axis" />
+      <xs:element name="CamPitchUp" type="button" />
+      <xs:element name="CamPitchDown" type="button" />
+      <xs:element name="CamYawAxis" type="axis" />
+      <xs:element name="CamYawLeft" type="button" />
+      <xs:element name="CamYawRight" type="button" />
+      <xs:element name="CamTranslateYAxis" type="axis" />
+      <xs:element name="CamTranslateForward" type="button" />
+      <xs:element name="CamTranslateBackward" type="button" />
+      <xs:element name="CamTranslateXAxis" type="axis" />
+      <xs:element name="CamTranslateLeft" type="button" />
+      <xs:element name="CamTranslateRight" type="button" />
+      <xs:element name="CamTranslateZAxis" type="axis" />
+      <xs:element name="CamTranslateUp" type="button" />
+      <xs:element name="CamTranslateDown" type="button" />
+      <xs:element name="CamZoomAxis" type="axis" />
+      <xs:element name="CamZoomIn" type="button" />
+      <xs:element name="CamZoomOut" type="button" />
+      <xs:element name="CamTranslateZHold" type="toggleButton" />
+
+      <xs:element name="ToggleDriveAssist" type="toggleButton" />
+      <xs:element name="DriveAssistDefault" type="numBool" />
+      <!-- ? --><xs:element name="MouseBuggySteeringXMode" type="string" />
+      <!-- ? --><xs:element name="MouseBuggySteeringXDecay" type="numBool" />
+      <!-- ? --><xs:element name="MouseBuggyRollingXMode" type="string" />
+      <!-- ? --><xs:element name="MouseBuggyRollingXDecay" type="numBool" />
+      <!-- ? --><xs:element name="MouseBuggyYMode" type="string" />
+      <!-- ? --><xs:element name="MouseBuggyYDecay" type="numBool" />
+      <xs:element name="SteeringAxis" type="axis" />
+      <xs:element name="SteerLeftButton" type="button" />
+      <xs:element name="SteerRightButton" type="button" />
+      <xs:element name="BuggyRollAxisRaw" type="axis" />
+      <xs:element name="BuggyRollLeftButton" type="button" />
+      <xs:element name="BuggyRollRightButton" type="button" />
+      <xs:element name="BuggyPitchAxis" type="axis" />
+      <xs:element name="BuggyPitchUpButton" type="button" />
+      <xs:element name="BuggyPitchDownButton" type="button" />
+      <xs:element name="VerticalThrustersButton" type="toggleButton" />
+      <xs:element name="BuggyPrimaryFireButton" type="button" />
+      <xs:element name="BuggySecondaryFireButton" type="button" />
+      <xs:element name="AutoBreakBuggyButton" type="toggleButton" /><!-- [sic] -->
+      <xs:element name="HeadlightsBuggyButton" type="button" />
+      <xs:element name="ToggleBuggyTurretButton" type="button" />
+      <xs:element name="SelectTarget_Buggy" type="button" />
+      <!-- restrict --><xs:element name="MouseTurretXMode" type="string" />
+      <xs:element name="MouseTurretXDecay" type="numBool" />
+      <!-- restrict --><xs:element name="MouseTurretYMode" type="string" />
+      <xs:element name="MouseTurretYDecay" type="numBool" />
+      <xs:element name="BuggyTurretYawAxisRaw" type="axis" />
+      <xs:element name="BuggyTurretYawLeftButton" type="button" />
+      <xs:element name="BuggyTurretYawRightButton" type="button" />
+      <xs:element name="BuggyTurretPitchAxisRaw" type="axis" />
+      <xs:element name="BuggyTurretPitchUpButton" type="button" />
+      <xs:element name="BuggyTurretPitchDownButton" type="button" />
+
+      <!-- Apparently those are optional -->
+      <xs:element name="BuggyTurretMouseSensitivity" type="positiveFloat" />
+      <xs:element name="BuggyTurretMouseDeadzone" type="zeroToOneFloat" />
+      <xs:element name="BuggyTurretMouseLinearity" type="positiveFloat" />
+
+      <xs:element name="DriveSpeedAxis" type="axis" />
+      <xs:element name="BuggyThrottleRange" type="buggyThrottleRange" />
+      <xs:element name="BuggyToggleReverseThrottleInput" type="toggleButton" />
+      <xs:element name="BuggyThrottleIncrement" type="zeroToOneFloat" />
+      <xs:element name="IncreaseSpeedButtonMax" type="button" />
+      <xs:element name="DecreaseSpeedButtonMax" type="button" />
+      <xs:element name="IncreaseSpeedButtonPartial" type="axis" />
+      <xs:element name="DecreaseSpeedButtonPartial" type="axis" />
+      <xs:element name="IncreaseEnginesPower_Buggy" type="button" />
+      <xs:element name="IncreaseWeaponsPower_Buggy" type="button" />
+      <xs:element name="IncreaseSystemsPower_Buggy" type="button" />
+      <xs:element name="ResetPowerDistribution_Buggy" type="button" />
+      <xs:element name="ToggleCargoScoop_Buggy" type="toggleButton" />
+      <xs:element name="EjectAllCargo_Buggy" type="button" />
+      <xs:element name="RecallDismissShip" type="button" />
+      <xs:element name="UIFocus_Buggy" type="button" />
+      <xs:element name="FocusLeftPanel_Buggy" type="button" />
+      <xs:element name="FocusCommsPanel_Buggy" type="button" />
+      <xs:element name="QuickCommsPanel_Buggy" type="button" />
+      <xs:element name="FocusRadarPanel_Buggy" type="button" />
+      <xs:element name="FocusRightPanel_Buggy" type="button" />
+      <xs:element name="GalaxyMapOpen_Buggy" type="button" />
+      <xs:element name="SystemMapOpen_Buggy" type="button" />
+      <xs:element name="HeadLookToggle_Buggy" type="toggleButton" />
+
+      <!-- Multicrew -->
+      <xs:element name="MultiCrewToggleMode" type="button" />
+      <xs:element name="MultiCrewPrimaryFire" type="button" />
+      <xs:element name="MultiCrewSecondaryFire" type="button" />
+      <xs:element name="MultiCrewPrimaryUtilityFire" type="button" />
+      <xs:element name="MultiCrewSecondaryUtilityFire" type="button" />
+      <!-- restrict --><xs:element name="MultiCrewThirdPersonMouseXMode" type="string" />
+      <xs:element name="MultiCrewThirdPersonMouseXDecay" type="numBool" />
+      <!-- restrict --><xs:element name="MultiCrewThirdPersonMouseYMode" type="string" />
+      <xs:element name="MultiCrewThirdPersonMouseYDecay" type="numBool" />
+      <xs:element name="MultiCrewThirdPersonYawAxisRaw" type="axis" />
+      <xs:element name="MultiCrewThirdPersonYawLeftButton" type="button" />
+      <xs:element name="MultiCrewThirdPersonYawRightButton" type="button" />
+      <xs:element name="MultiCrewThirdPersonPitchAxisRaw" type="axis" />
+      <xs:element name="MultiCrewThirdPersonPitchUpButton" type="button" />
+      <xs:element name="MultiCrewThirdPersonPitchDownButton" type="button" />
+      <xs:element name="MultiCrewThirdPersonMouseSensitivity" type="positiveFloat" />
+      <xs:element name="MultiCrewThirdPersonFovAxisRaw" type="axis" />
+      <xs:element name="MultiCrewThirdPersonFovOutButton" type="button" />
+      <xs:element name="MultiCrewThirdPersonFovInButton" type="button" />
+      <xs:element name="MultiCrewCockpitUICycleForward" type="button" />
+      <xs:element name="MultiCrewCockpitUICycleBackward" type="button" />
+
+      <!-- SLF -->
+      <xs:element name="OrderRequestDock" type="button" />
+      <xs:element name="OrderDefensiveBehaviour" type="button" />
+      <xs:element name="OrderAggressiveBehaviour" type="button" />
+      <xs:element name="OrderFocusTarget" type="button" />
+      <xs:element name="OrderHoldFire" type="button" />
+      <xs:element name="OrderHoldPosition" type="button" />
+      <xs:element name="OrderFollow" type="button" />
+      <xs:element name="OpenOrders" type="button" />
+
+      <!-- Vanity camera -->
+      <xs:element name="PhotoCameraToggle" type="button" />
+      <xs:element name="PhotoCameraToggle_Buggy" type="button" />
+      <xs:element name="VanityCameraScrollLeft" type="button" />
+      <xs:element name="VanityCameraScrollRight" type="button" />
+      <xs:element name="ToggleFreeCam" type="button" />
+      <xs:element name="VanityCameraOne" type="button" />
+      <xs:element name="VanityCameraTwo" type="button" />
+      <xs:element name="VanityCameraThree" type="button" />
+      <xs:element name="VanityCameraFour" type="button" />
+      <xs:element name="VanityCameraFive" type="button" />
+      <xs:element name="VanityCameraSix" type="button" />
+      <xs:element name="VanityCameraSeven" type="button" />
+      <xs:element name="VanityCameraEight" type="button" />
+      <xs:element name="VanityCameraNine" type="button" />
+      <xs:element name="FreeCamToggleHUD" type="button" />
+      <xs:element name="FreeCamSpeedInc" type="button" />
+      <xs:element name="FreeCamSpeedDec" type="button" />
+      <xs:element name="MoveFreeCamY" type="axis" />
+      <xs:element name="ThrottleRangeFreeCam" type="cameraThrottleRange" />
+      <xs:element name="ToggleReverseThrottleInputFreeCam" type="toggleButton" />
+      <xs:element name="MoveFreeCamForward" type="button" />
+      <xs:element name="MoveFreeCamBackwards" type="button" />
+      <xs:element name="MoveFreeCamX" type="axis" />
+      <xs:element name="MoveFreeCamRight" type="button" />
+      <xs:element name="MoveFreeCamLeft" type="button" />
+      <xs:element name="MoveFreeCamZ" type="axis" />
+      <xs:element name="MoveFreeCamUpAxis" type="axis" />
+      <xs:element name="MoveFreeCamDownAxis" type="axis" />
+      <xs:element name="MoveFreeCamUp" type="button" />
+      <xs:element name="MoveFreeCamDown" type="button" />
+      <!-- ? --><xs:element name="PitchCameraMouse" type="string" />
+      <!-- ? --><xs:element name="YawCameraMouse" type="string" />
+      <xs:element name="PitchCamera" type="axis" />
+      <xs:element name="FreeCamMouseSensitivity" type="positiveFloat" />
+      <xs:element name="FreeCamMouseYDecay" type="numBool" />
+      <xs:element name="PitchCameraUp" type="button" />
+      <xs:element name="PitchCameraDown" type="button" />
+      <xs:element name="YawCamera" type="axis" />
+      <xs:element name="FreeCamMouseXDecay" type="numBool" />
+      <xs:element name="YawCameraLeft" type="button" />
+      <xs:element name="YawCameraRight" type="button" />
+      <xs:element name="RollCamera" type="axis" />
+      <xs:element name="RollCameraLeft" type="button" />
+      <xs:element name="RollCameraRight" type="button" />
+      <xs:element name="ToggleRotationLock" type="button" />
+      <xs:element name="FixCameraRelativeToggle" type="button" />
+      <xs:element name="FixCameraWorldToggle" type="button" />
+      <xs:element name="QuitCamera" type="button" />
+      <xs:element name="ToggleAdvanceMode" type="button" />
+      <xs:element name="FreeCamZoomIn" type="button" />
+      <xs:element name="FreeCamZoomOut" type="button" />
+      <xs:element name="FStopDec" type="button" />
+      <xs:element name="FStopInc" type="button" />
+
+      <!-- Holo-Me -->
+      <xs:element name="CommanderCreator_Undo" type="button" />
+      <xs:element name="CommanderCreator_Redo" type="button" />
+      <xs:element name="CommanderCreator_Rotation_MouseToggle" type="button" />
+      <xs:element name="CommanderCreator_Rotation" type="axis" />
+
+      <!-- GalNet -->
+      <xs:element name="GalnetAudio_Play_Pause" type="button" />
+      <xs:element name="GalnetAudio_SkipForward" type="button" />
+      <xs:element name="GalnetAudio_SkipBackward" type="button" />
+      <xs:element name="GalnetAudio_ClearQueue" type="button" />
+
+      <!-- New exploration stuff -->
+      <xs:element name="ExplorationFSSEnter" type="button" />
+      <xs:element name="ExplorationFSSCameraPitch" type="axis" />
+      <xs:element name="ExplorationFSSCameraPitchIncreaseButton" type="button" />
+      <xs:element name="ExplorationFSSCameraPitchDecreaseButton" type="button" />
+      <xs:element name="ExplorationFSSCameraYaw" type="axis" />
+      <xs:element name="ExplorationFSSCameraYawIncreaseButton" type="button" />
+      <xs:element name="ExplorationFSSCameraYawDecreaseButton" type="button" />
+      <xs:element name="ExplorationFSSZoomIn" type="button" />
+      <xs:element name="ExplorationFSSZoomOut" type="button" />
+      <xs:element name="ExplorationFSSMiniZoomIn" type="button" />
+      <xs:element name="ExplorationFSSMiniZoomOut" type="button" />
+      <xs:element name="ExplorationFSSRadioTuningX_Raw" type="axis" />
+      <xs:element name="ExplorationFSSRadioTuningX_Increase" type="button" />
+      <xs:element name="ExplorationFSSRadioTuningX_Decrease" type="button" />
+      <xs:element name="ExplorationFSSRadioTuningAbsoluteX" type="axis" />
+      <xs:element name="FSSTuningSensitivity" type="positiveFloat" />
+      <xs:element name="ExplorationFSSDiscoveryScan" type="button" />
+      <xs:element name="ExplorationFSSQuit" type="button" />
+      <!-- restrict --><xs:element name="FSSMouseXMode" type="string" />
+      <xs:element name="FSSMouseXDecay" type="numBool" />
+      <!-- restrict --><xs:element name="FSSMouseYMode" type="string" />
+      <xs:element name="FSSMouseYDecay" type="numBool" />
+      <xs:element name="FSSMouseSensitivity" type="positiveFloat" />
+      <xs:element name="FSSMouseDeadzone" type="zeroToOneFloat" />
+      <xs:element name="FSSMouseLinearity" type="positiveFloat" />
+      <xs:element name="ExplorationFSSTarget" type="button" />
+      <xs:element name="ExplorationFSSShowHelp" type="button" />
+      <xs:element name="ExplorationSAAChangeScannedAreaViewToggle" type="toggleButton" />
+      <xs:element name="ExplorationSAAExitThirdPerson" type="button" />
+      <!-- restrict --><xs:element name="SAAThirdPersonMouseXMode" type="string" />
+      <xs:element name="SAAThirdPersonMouseXDecay" type="numBool" />
+      <!-- restrict --><xs:element name="SAAThirdPersonMouseYMode" type="string" />
+      <xs:element name="SAAThirdPersonMouseYDecay" type="numBool" />
+      <xs:element name="SAAThirdPersonMouseSensitivity" type="positiveFloat" />
+      <xs:element name="SAAThirdPersonYawAxisRaw" type="axis" />
+      <xs:element name="SAAThirdPersonYawLeftButton" type="button" />
+      <xs:element name="SAAThirdPersonYawRightButton" type="button" />
+      <xs:element name="SAAThirdPersonPitchAxisRaw" type="axis" />
+      <xs:element name="SAAThirdPersonPitchUpButton" type="button" />
+      <xs:element name="SAAThirdPersonPitchDownButton" type="button" />
+      <xs:element name="SAAThirdPersonFovAxisRaw" type="axis" />
+      <xs:element name="SAAThirdPersonFovOutButton" type="button" />
+      <xs:element name="SAAThirdPersonFovInButton" type="button" />
+    </xs:all>
+
+    <xs:attribute name="PresetName" type="xs:string"/>
+    <xs:attribute name="MajorVersion" type="xs:positiveInteger"/>
+    <xs:attribute name="MinorVersion">
+      <xs:simpleType>
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="buttonBase">
+    <xs:sequence>
+      <xs:element name="Modifier" type="deviceInput" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+
+    <xs:attribute name="Device" type="xs:string"/>
+    <xs:attribute name="Key" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="deviceInput">
+    <xs:attribute name="Device" type="xs:string"/>
+    <xs:attribute name="Key" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="button">
+    <xs:sequence>
+      <xs:element name="Primary" type="buttonBase" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Secondary" type="buttonBase" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="toggleButton">
+    <xs:sequence>
+      <xs:element name="Primary" type="buttonBase" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Secondary" type="buttonBase" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ToggleOn" type="numBool" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="axis">
+    <xs:sequence>
+      <xs:element name="Binding" type="deviceInput" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Inverted" type="numBool" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Deadzone" type="zeroToOneFloat" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="zeroToOneFloat">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base="xs:float">
+          <xs:minInclusive value="0.0"/>
+          <xs:maxInclusive value="1.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="positiveFloat">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base="xs:float">
+          <xs:minInclusive value="0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="numBool">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="0"/>
+          <xs:maxInclusive value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="string">
+    <xs:attribute name="Value" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="mouseMode">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base = "xs:string">
+          <xs:enumeration value = ""/>
+          <xs:enumeration value = "Bindings_MouseAbsPitchRoll"/>
+          <xs:enumeration value = "Bindings_MouseAbsPitchRollInv"/>
+          <xs:enumeration value = "Bindings_MouseAbsPitchYaw"/>
+          <xs:enumeration value = "Bindings_MouseAbsPitchYawInv"/>
+          <xs:enumeration value = "Bindings_MouseRelPitchRoll"/>
+          <xs:enumeration value = "Bindings_MouseRelPitchRollInv"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="yawToRollMode">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base = "xs:string">
+          <xs:enumeration value = "" />
+          <xs:enumeration value = "Bindings_YawIntoRollNone"/>
+          <xs:enumeration value = "Bindings_YawIntoRollTime"/>
+          <xs:enumeration value = "Bindings_YawIntoRollLowRoll"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="throttleRange">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base = "xs:string">
+          <xs:enumeration value = ""/>
+          <xs:enumeration value = "Bindings_ThrottleForewardOnly"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Why the heck is this its own thing and not just throttleRange? -->
+  <xs:complexType name="buggyThrottleRange">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base = "xs:string">
+          <xs:enumeration value = ""/>
+          <xs:enumeration value = "Bindings_BuggyThrottleForewardOnly"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Why the heck is this its own thing and not just throttleRange? (2) -->
+  <xs:complexType name="cameraThrottleRange">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base = "xs:string">
+          <xs:enumeration value = ""/>
+          <xs:enumeration value = "Bindings_ThrottleForewardOnlyFreeCam"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- seems unused -->
+  <xs:complexType name="gunsightSystem">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base = "xs:string">
+          <xs:enumeration value = "Bindings_TraditionalGunsights"/>
+          <xs:enumeration value = "Bindings_TrailingGunsights"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="headlookMode">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base = "xs:string">
+          <xs:enumeration value = "Bindings_HeadlookModeDirect"/>
+          <xs:enumeration value = "Bindings_HeadlookModeAccumulate"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="uiFocusMode">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:restriction base = "xs:string">
+          <xs:enumeration value = "Bindings_FocusModeHold"/>
+          <xs:enumeration value = "Bindings_FocusModeToggle"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+</xs:schema>
