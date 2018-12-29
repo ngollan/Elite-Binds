@@ -6,6 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="binds.xsd" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="binds.xsd" />
   </ItemGroup>
 </Project>
