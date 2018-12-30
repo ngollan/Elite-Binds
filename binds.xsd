@@ -106,6 +106,7 @@
       <xs:element name="WingNavLock" type="button" />
       <xs:element name="CycleNextSubsystem" type="button" />
       <xs:element name="CyclePreviousSubsystem" type="button" />
+      <!-- seen in premade binds but may not be emitted if default --><xs:element name="GunsightSystem" type="gunsightSystem" minOccurs="0" />
       <xs:element name="TargetNextRouteSystem" type="button" />
       <xs:element name="PrimaryFire" type="button" />
       <xs:element name="SecondaryFire" type="button" />
@@ -234,7 +235,7 @@
       <xs:element name="BuggyPrimaryFireButton" type="button" />
       <xs:element name="BuggySecondaryFireButton" type="button" />
       <xs:element name="AutoBreakBuggyButton" type="toggleButton" /><!-- [sic] -->
-      <xs:element name="HeadlightsBuggyButton" type="button" />
+      <xs:element name="HeadlightsBuggyButton" type="toggleButton" />
       <xs:element name="ToggleBuggyTurretButton" type="button" />
       <xs:element name="SelectTarget_Buggy" type="button" />
       <!-- restrict --><xs:element name="MouseTurretXMode" type="string" />
@@ -314,6 +315,8 @@
       <!-- Vanity camera -->
       <xs:element name="PhotoCameraToggle" type="button" />
       <xs:element name="PhotoCameraToggle_Buggy" type="button" />
+      <!-- deprecated, only in premade binds? --><xs:element name="ToggleVanityCamera" type="button" minOccurs="0" />
+      <!-- deprecated, only in premade binds? --><xs:element name="ToggleVanityCamera_Buggy" type="button" minOccurs="0" />
       <xs:element name="VanityCameraScrollLeft" type="button" />
       <xs:element name="VanityCameraScrollRight" type="button" />
       <xs:element name="ToggleFreeCam" type="button" />
@@ -365,6 +368,8 @@
       <xs:element name="FreeCamZoomOut" type="button" />
       <xs:element name="FStopDec" type="button" />
       <xs:element name="FStopInc" type="button" />
+      <!-- appears in premade binds but cannot find corresponding menu entry --><xs:element name="FocusDistanceDec" type="button" minOccurs="0" />
+      <!-- appears in premade binds but cannot find corresponding menu entry --><xs:element name="FocusDistanceInc" type="button" minOccurs="0" />
 
       <!-- Holo-Me -->
       <xs:element name="CommanderCreator_Undo" type="button" />
@@ -433,11 +438,20 @@
         </xs:restriction>
       </xs:simpleType>
     </xs:attribute>
+    <xs:attribute name="SortOrder">
+      <!-- Only happens in premade binds, but maybe abusable? It is always 0, but assuming a positive or zero integer. -->
+      <xs:simpleType>
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="buttonBase">
     <xs:sequence>
-      <xs:element name="Modifier" type="deviceInput" minOccurs="0" maxOccurs="1" />
+      <!-- just go nuts, but maximum observed is 2 -->
+      <xs:element name="Modifier" type="deviceInput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
 
     <xs:attribute name="Device" type="xs:string"/>
@@ -449,27 +463,49 @@
     <xs:attribute name="Key" type="xs:string"/>
   </xs:complexType>
 
+  <!-- "button" has been seen with primary/secondary swapped -->
+
   <xs:complexType name="button">
-    <xs:sequence>
+    <xs:all>
       <xs:element name="Primary" type="buttonBase" minOccurs="0" maxOccurs="1" />
       <xs:element name="Secondary" type="buttonBase" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
   </xs:complexType>
 
   <xs:complexType name="toggleButton">
-    <xs:sequence>
+    <xs:all>
       <xs:element name="Primary" type="buttonBase" minOccurs="0" maxOccurs="1" />
       <xs:element name="Secondary" type="buttonBase" minOccurs="0" maxOccurs="1" />
       <xs:element name="ToggleOn" type="numBool" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
   </xs:complexType>
 
   <xs:complexType name="axis">
     <xs:sequence>
       <xs:element name="Binding" type="deviceInput" minOccurs="0" maxOccurs="1" />
       <xs:element name="Inverted" type="numBool" minOccurs="0" maxOccurs="1" />
-      <xs:element name="Deadzone" type="zeroToOneFloat" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Deadzone" type="deadzone" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="deadzone">
+    <xs:attribute name="Value">
+      <xs:simpleType>
+        <xs:union>
+          <xs:simpleType>
+            <xs:restriction base = "xs:string">
+              <xs:enumeration value = "DefaultPlatformDeadzone"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:simpleType>
+            <xs:restriction base="xs:float">
+              <xs:minInclusive value="0.0"/>
+              <xs:maxInclusive value="1.0"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:union>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="zeroToOneFloat">
@@ -572,7 +608,7 @@
     </xs:attribute>
   </xs:complexType>
 
-  <!-- seems unused -->
+  <!-- seems unused, or at least "traditional"/leading isn't explicit in generated binds -->
   <xs:complexType name="gunsightSystem">
     <xs:attribute name="Value">
       <xs:simpleType>

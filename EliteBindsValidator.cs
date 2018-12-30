@@ -4,6 +4,7 @@ using System.Xml.Schema;
 using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace EliteBinds {
 
@@ -141,14 +142,34 @@ namespace EliteBinds {
     );
 
     static void Main(string[] args) {
+      IEnumerable<string> filenames;
+
       if (args.Length == 0) {
-        args = Directory.GetFiles(BindingsPath, "*.binds");
+        filenames = Directory.GetFiles(BindingsPath, "*.binds");
+      } else {
+        List<string[]> globbed = args.Select((path) => {
+          var fn = System.IO.Path.GetFileName(path);
+          var pn = System.IO.Path.GetDirectoryName(path);
+
+          if (fn == String.Empty) {
+            fn = "*.binds";
+          }
+
+          return Directory.GetFiles(pn, fn);
+        }).ToList();
+        filenames = new List<String>();
+
+        foreach (string[] names in globbed) {
+          foreach(string filename in names) {
+            (filenames as List<string>).Add(filename);
+          }
+        }
       }
 
       // map preset name to file names
       var conflictInfo = new SortedDictionary<string, List<string>>();
 
-      foreach(string filename in args) {
+      foreach(string filename in filenames) {
         var fi = new FileInfo(filename);
         Console.WriteLine(fi.FileName);
 
