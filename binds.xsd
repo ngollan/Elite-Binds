@@ -1,5 +1,6 @@
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:p="urn:EliteDangerousBindsProcessing.3.0.xsd"
   targetNamespace="urn:EliteDangerousBinds.3.0.xsd"
   xmlns="urn:EliteDangerousBinds.3.0.xsd"
   elementFormDefault="qualified">
@@ -315,8 +316,22 @@
       <!-- Vanity camera -->
       <xs:element name="PhotoCameraToggle" type="button" />
       <xs:element name="PhotoCameraToggle_Buggy" type="button" />
-      <!-- deprecated, only in premade binds? --><xs:element name="ToggleVanityCamera" type="button" minOccurs="0" />
-      <!-- deprecated, only in premade binds? --><xs:element name="ToggleVanityCamera_Buggy" type="button" minOccurs="0" />
+      <xs:element name="ToggleVanityCamera" type="button" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only seen in premade bindings.</xs:documentation>
+          <xs:appinfo>
+            <p:Deprecated>1</p:Deprecated>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ToggleVanityCamera_Buggy" type="button" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only seen in premade bindings.</xs:documentation>
+          <xs:appinfo>
+            <p:Deprecated>1</p:Deprecated>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="VanityCameraScrollLeft" type="button" />
       <xs:element name="VanityCameraScrollRight" type="button" />
       <xs:element name="ToggleFreeCam" type="button" />

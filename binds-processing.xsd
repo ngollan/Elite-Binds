@@ -1,0 +1,11 @@
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:edb="urn:EliteDangerousBinds.3.0.xsd"
+  targetNamespace="urn:EliteDangerousBindsProcessing.3.0.xsd"
+  xmlns="urn:EliteDangerousBindsProcessing.3.0.xsd"
+  elementFormDefault="qualified">
+
+  <xs:element name="Group" type="xs:string" />
+  <xs:element name="Deprecated" type="xs:boolean" />
+  <xs:element name="FillFrom" type="xs:boolean" />
+</xs:schema>

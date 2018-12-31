@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="binds.xsd" />
+    <EmbeddedResource Include="binds-processing.xsd" />
     <RuntimeHostConfigurationOption Include="System.Globalization.Invariant" Value="true" />
   </ItemGroup>
 </Project>

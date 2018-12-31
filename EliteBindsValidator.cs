@@ -11,7 +11,7 @@ namespace EliteBinds {
   // This appears to be the sanest way to fudge a default namespace into an
   // XML reader.
   class BindsNamespaceManager : XmlNamespaceManager {
-    public override string DefaultNamespace { get => "urn:EliteDangerousBinds.3.0.xsd"; }
+    public override string DefaultNamespace { get => FileInfo.BindsSchemaNamespace; }
 
     public BindsNamespaceManager() : base(new NameTable()) {
     }
@@ -27,15 +27,21 @@ namespace EliteBinds {
 
   // 
   class VersionInfo {
-    public int Major {get; private set;}
-    public int Minor {get; private set;}
+    public int Major {get; set;}
+    public int Minor {get; set;}
 
+    public VersionInfo() {
+      Major = 0;
+      Minor = 0;
+    }
     public VersionInfo(int major, int minor) {
       Major = major;
       Minor = minor;
     }
 
     public override string ToString() => $"{Major}.{Minor}";
+
+    public bool IsZero() => (Major == 0 && Minor == 0);
   }
 
   class ErrorInfo {
@@ -67,7 +73,9 @@ namespace EliteBinds {
 
   // Contains various information about a binds file.
   class FileInfo {
+    public static string BindsSchemaNamespace = "urn:EliteDangerousBinds.3.0.xsd";
     public const string SchemaResource = "Elite Binds.binds.xsd";
+    public const string ProcessingSchemaResource = "Elite Binds.binds-processing.xsd";
     public string Path {get; private set;}
     public string FileName {get {return System.IO.Path.GetFileName(Path);} }
     public string PresetName {get; private set;}
@@ -77,12 +85,25 @@ namespace EliteBinds {
 
     public FileInfo(string path) {
       Path = path;
+
+      // Initialise the preset name from the file name, assuming that's what's suposed to happen for premade binds.
+      PresetName = System.IO.Path.GetFileNameWithoutExtension(Path);
+
+      Version = new VersionInfo();
       SchemaErrors = new List<ErrorInfo>();
       Validate();
     }
 
     public override string ToString() => $"{PresetName} <{Version.ToString()}>";
-    public string GeneratedFileName { get => $"{PresetName}.{Version.ToString()}.binds"; }
+    public string GeneratedFileName {
+      get {
+        if (Version.IsZero()) {
+          return $"{PresetName}.binds";
+        } else {
+          return $"{PresetName}.{Version.ToString()}.binds";
+        }
+      }
+    }
 
     public bool GeneratedFilenameMatch() {
       return GeneratedFileName == FileName;
@@ -93,8 +114,8 @@ namespace EliteBinds {
       XmlReaderSettings settings = new XmlReaderSettings();
 
       var a = Assembly.GetEntryAssembly();
-      var s = a.GetManifestResourceStream(SchemaResource);
-      settings.Schemas.Add(null, XmlReader.Create(s));
+      settings.Schemas.Add(null, XmlReader.Create(a.GetManifestResourceStream(SchemaResource)));
+      settings.Schemas.Add(null, XmlReader.Create(a.GetManifestResourceStream(ProcessingSchemaResource)));
 
       settings.ValidationType = ValidationType.Schema;
       settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
@@ -114,19 +135,51 @@ namespace EliteBinds {
       SchemaErrors.Clear();
 
       while (reader.Read()) {
-        if(reader.NodeType is XmlNodeType.Element && reader.Name == "Root" /* && reader.SchemaInfo.Validity == XmlSchemaValidity.Valid */) {
-          try {
-            PresetName = reader["PresetName"];
-            Version = new VersionInfo(
-              Int32.Parse(reader["MajorVersion"]),
-              Int32.Parse(reader["MinorVersion"])
-            );
-          } catch {
-            Console.WriteLine("Error reading <Root> element.");
-            PresetName = "";
-            Version = new VersionInfo(0, 0);
+        if(reader.NodeType is XmlNodeType.Element) {
+          var si = reader.SchemaInfo;
+          var se = si.SchemaElement;
+
+          if (se == null) {
+            // The file probably stopped making sense, keep reading to emit errors and maybe get lucky.
+            continue;
+          }
+
+          if (se.SchemaTypeName.Namespace == BindsSchemaNamespace) {
+            switch (se.SchemaTypeName.Name) {
+              case "bindsContainer":
+                EvaluateRoot(reader);
+                break;
+            }
           }
         }
+      }
+    }
+
+    // Read naming and version information from root element.
+    private void EvaluateRoot(XmlReader reader) {
+      if (reader.HasAttributes) {
+        while (reader.MoveToNextAttribute()) {
+          switch (reader.Name) {
+            case "PresetName":
+              PresetName = reader.Value;
+              break;
+
+            case "MajorVersion":
+            case "MinorVersion":
+              var v = Int32.Parse(reader.Value);
+
+              if (reader.Name == "MajorVersion") {
+                Version.Major = v;
+              }
+              else {
+                Version.Minor = v;
+              }
+
+              break;
+          }
+        }
+
+        reader.MoveToElement();
       }
     }
 
