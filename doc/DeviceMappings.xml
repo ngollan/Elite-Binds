@@ -104,7 +104,9 @@
 	<ThrustMasterWarthogCombined>		<PID>FFFF</PID>		<VID>044F</VID>		</ThrustMasterWarthogCombined>
 	<SaitekFLY5>						<PID>1302</PID>		<VID>0738</VID>		</SaitekFLY5>
 	<ThrustMasterTFlightHOTASX>			<PID>B108</PID>		<VID>044f</VID>		</ThrustMasterTFlightHOTASX>
-	<ThrustMasterHOTAS4>				<PID>B67C</PID>		<VID>044F</VID>     <SupportsIcons>TFlightHotas4</SupportsIcons> </ThrustMasterHOTAS4>
+	<ThrustMasterHOTAS4>				<PID>B67C</PID>		<VID>044F</VID>     <SupportsIcons>TFlightHotas4</SupportsIcons>
+		<Alternative><PID>B67B</PID><VID>044F</VID></Alternative>
+	</ThrustMasterHOTAS4>
 	<TFlightHotasOne>					<PID>B68D</PID>		<VID>044F</VID>     <SupportsIcons>TFlightHotasOne</SupportsIcons> </TFlightHotasOne>
 	<T16000M>							<PID>B10A</PID>		<VID>044F</VID>		</T16000M>
 	<T16000MTHROTTLE>					<PID>B687</PID>		<VID>044F</VID>		</T16000MTHROTTLE>
