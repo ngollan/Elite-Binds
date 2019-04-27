@@ -157,6 +157,7 @@
 
       <xs:element name="EnableCameraLockOn" type="numBool" />
       <xs:element name="GalaxyMapOpen" type="button" />
+      <xs:element name="GalaxyMapHome" type="button" />
       <xs:element name="SystemMapOpen" type="button" />
       <xs:element name="ShowPGScoreSummaryInput" type="toggleButton" />
       <xs:element name="HeadLookToggle" type="toggleButton" />
@@ -235,6 +236,9 @@
       <xs:element name="VerticalThrustersButton" type="toggleButton" />
       <xs:element name="BuggyPrimaryFireButton" type="button" />
       <xs:element name="BuggySecondaryFireButton" type="button" />
+      <xs:element name="BuggyCycleFireGroupNext" type="button" />
+      <xs:element name="BuggyCycleFireGroupPrevious" type="button" />
+      <xs:element name="PlayerHUDModeToggle_Buggy" type="button" />
       <xs:element name="AutoBreakBuggyButton" type="toggleButton" /><!-- [sic] -->
       <xs:element name="HeadlightsBuggyButton" type="toggleButton" />
       <xs:element name="ToggleBuggyTurretButton" type="button" />
@@ -279,6 +283,7 @@
       <xs:element name="GalaxyMapOpen_Buggy" type="button" />
       <xs:element name="SystemMapOpen_Buggy" type="button" />
       <xs:element name="HeadLookToggle_Buggy" type="toggleButton" />
+      <xs:element name="OpenCodexGoToDiscovery_Buggy" type="button" />
 
       <!-- Multicrew -->
       <xs:element name="MultiCrewToggleMode" type="button" />
