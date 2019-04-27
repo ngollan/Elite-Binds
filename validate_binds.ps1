@@ -15,7 +15,7 @@ function New-Status()
   return $status
 }
 
-function Check-Profiles() {
+function Get-EliteDangerousProfiles() {
     Get-ChildItem "$(Get-ChildItem env:localappdata | Get-Content)\Frontier Developments\Elite Dangerous\Options\Bindings" -Filter "*.binds" |
     Foreach-Object {
         $fname = $_.Name
@@ -49,4 +49,4 @@ function Check-Profiles() {
     $status | Out-GridView -Wait
 }
 
-Check-Profiles
+Get-EliteDangerousProfiles
