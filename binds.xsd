@@ -447,6 +447,14 @@
       <xs:element name="SAAThirdPersonFovAxisRaw" type="axis" />
       <xs:element name="SAAThirdPersonFovOutButton" type="button" />
       <xs:element name="SAAThirdPersonFovInButton" type="button" />
+
+      <!-- Store controls introduced in September 2019 -->
+      <xs:element name="StoreEnableRotation" type="button" />
+      <xs:element name="StoreCamZoomIn" type="button" />
+      <xs:element name="StoreCamZoomOut" type="button" />
+      <xs:element name="StoreToggle" type="button" />
+      <xs:element name="StorePitchCamera" type="axis" />
+      <xs:element name="StoreYawCamera" type="axis" />
     </xs:all>
 
     <xs:attribute name="PresetName" type="xs:string"/>
